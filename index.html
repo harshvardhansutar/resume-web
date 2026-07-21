@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Harshvardhan Sutar — Resume</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F8F6F2;
+  --paper:#FFFFFF;
+  --text:#111111;
+  --text2:#666666;
+  --border:#E5E5E5;
+  --accent:#5B6472;
+  --success:#22C55E;
+  --shadow:0 25px 80px rgba(0,0,0,.08);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{
+  font-family:'Inter',sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:inherit;text-decoration:none;}
+
+#progress{position:fixed;top:0;left:0;height:3px;background:var(--accent);width:0%;z-index:1000;transition:width .1s;}
+
+/* Slim identity label, not a website nav */
+.topbar{
+  position:sticky;top:0;z-index:900;
+  display:flex;justify-content:center;
+  padding:16px 0;
+}
+.topbar-inner{
+  width:min(850px,92%);
+  display:flex;align-items:center;justify-content:space-between;
+}
+.topbar .name{
+  font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--text2);opacity:.7;
+  background:rgba(248,246,242,.85);backdrop-filter:blur(6px);
+  padding:4px 10px;border-radius:100px;
+}
+.topbar .dl-link{
+  font-size:12.5px;font-weight:600;color:var(--text);
+  background:rgba(248,246,242,.85);backdrop-filter:blur(6px);
+  border:1px solid var(--border);padding:6px 14px;border-radius:100px;
+  display:inline-flex;align-items:center;gap:6px;
+  transition:transform .2s,box-shadow .2s;
+}
+.topbar .dl-link:hover{transform:translateY(-1px);box-shadow:0 6px 16px rgba(0,0,0,.06);}
+
+/* THE PAPER — A4 proportioned on desktop (1:1.4142) */
+.page-wrap{display:flex;justify-content:center;padding:20px 20px 90px;}
+.page{
+  width:min(850px,100%);
+  background:var(--paper);
+  border-radius:24px;
+  box-shadow:var(--shadow);
+  border:1px solid var(--border);
+  padding:70px;
+}
+/* A4 proportion (1:1.4142) as a minimum height on desktop, content grows beyond it */
+@media(min-width:701px){
+  .page{min-height:1202px;}
+}
+@media(max-width:700px){
+  .page{padding:44px 26px;border-radius:20px;}
+}
+
+/* Header inside page */
+.doc-header{display:flex;justify-content:space-between;align-items:flex-start;gap:24px;padding-bottom:32px;border-bottom:1px solid var(--border);margin-bottom:32px;}
+.doc-header h1{font-size:30px;font-weight:800;letter-spacing:-.01em;margin-bottom:4px;}
+.doc-header .role{font-size:14.5px;color:var(--text2);font-weight:500;}
+.doc-header .contact-line{font-size:12.5px;color:var(--text2);margin-top:10px;line-height:1.9;}
+.doc-header .contact-line span{white-space:nowrap;margin-right:2px;}
+.doc-header .contact-line a:hover{color:var(--accent);}
+.doc-header .dot{margin:0 6px;color:var(--border);}
+.avatar{
+  width:64px;height:64px;border-radius:16px;flex-shrink:0;
+  background:linear-gradient(135deg,#111,#444);
+  display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:19px;
+}
+.copy-chip{cursor:pointer;}
+.copy-chip.copied{color:var(--success);}
+
+/* Doc sections */
+.doc-section{margin-bottom:36px;}
+.doc-section:last-child{margin-bottom:0;}
+.sec-label{font-size:11px;font-weight:700;letter-spacing:.14em;color:var(--text2);text-transform:uppercase;margin-bottom:16px;}
+
+/* Subtle scroll reveal */
+.reveal{opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease;}
+.reveal.in{opacity:1;transform:translateY(0);}
+@media(prefers-reduced-motion:reduce){
+  .reveal{opacity:1;transform:none;transition:none;}
+}
+
+/* Profile paragraph w/ accent line */
+.profile-text{border-left:3px solid var(--accent);padding-left:20px;color:#333;font-size:14.5px;}
+
+/* Education / Experience entries */
+.entry{margin-bottom:22px;}
+.entry:last-child{margin-bottom:0;}
+.entry-head{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;}
+.entry-title{font-weight:700;font-size:15px;}
+.entry-org{font-size:13.5px;color:var(--text2);margin-top:1px;}
+.entry-meta{font-size:12.5px;color:var(--text2);white-space:nowrap;text-align:right;}
+
+.expand-toggle{
+  margin-top:8px;font-size:12.5px;font-weight:600;color:var(--accent);cursor:pointer;
+  display:inline-flex;align-items:center;gap:4px;
+}
+.expand-body{max-height:0;overflow:hidden;transition:max-height .35s ease;}
+.expand-body.open{max-height:400px;}
+.expand-body ul{margin:10px 0 0 18px;color:#444;font-size:13.5px;}
+.expand-body ul li{margin-bottom:5px;}
+
+/* Projects */
+.proj-entry{border-top:1px solid var(--border);padding:18px 0;}
+.proj-entry:last-child{padding-bottom:0;}
+.proj-head{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:baseline;}
+.proj-name{font-weight:700;font-size:15px;}
+.proj-duration{font-size:12px;color:var(--text2);white-space:nowrap;}
+.proj-stack{font-size:12px;color:var(--accent);font-weight:600;margin:2px 0 8px;}
+.proj-highlights{margin:0 0 0 18px;color:#444;font-size:13.5px;display:none;}
+.proj-entry.open .proj-highlights{display:block;margin-top:8px;}
+.proj-highlights li{margin-bottom:5px;}
+.proj-link{display:none;font-size:12.5px;margin-top:8px;}
+.proj-link a{font-weight:600;color:var(--accent);}
+.proj-link a:hover{text-decoration:underline;}
+.proj-entry.open .proj-link{display:block;}
+.proj-toggle{font-size:12.5px;font-weight:600;color:var(--accent);cursor:pointer;display:inline-block;margin-top:10px;}
+
+/* Skills */
+.skill-cat{margin-bottom:16px;}
+.skill-cat:last-child{margin-bottom:0;}
+.skill-cat-title{font-size:12px;font-weight:700;color:var(--text2);margin-bottom:8px;text-transform:uppercase;letter-spacing:.06em;}
+.chips{display:flex;flex-wrap:wrap;gap:8px;}
+.chip{
+  padding:6px 13px;border-radius:100px;background:var(--bg);border:1px solid var(--border);
+  font-size:12.5px;font-weight:500;transition:transform .15s,border-color .15s;
+}
+.chip:hover{transform:translateY(-2px);border-color:var(--accent);}
+
+/* Certs */
+.cert-row{display:flex;justify-content:space-between;gap:12px;padding:11px 0;border-top:1px solid var(--border);font-size:13.5px;flex-wrap:wrap;}
+.cert-row:first-of-type{border-top:none;}
+.cert-name{font-weight:600;}
+.cert-org{color:var(--text2);font-size:12.5px;}
+.cert-year{color:var(--text2);font-size:12.5px;white-space:nowrap;}
+
+/* Languages / interests row */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:32px;}
+@media(max-width:600px){.two-col{grid-template-columns:1fr;gap:28px;}}
+
+footer{text-align:center;font-size:12.5px;color:var(--text2);padding:0 0 40px;}
+
+.floating-col{position:fixed;bottom:26px;right:26px;display:flex;flex-direction:column;gap:12px;z-index:800;}
+.fab{
+  width:46px;height:46px;border-radius:50%;background:var(--text);color:#fff;border:none;
+  display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:var(--shadow);
+  font-size:17px;opacity:0;transform:scale(.8);transition:opacity .3s,transform .3s;
+}
+.fab.show{opacity:1;transform:scale(1);}
+.fab.accent{background:var(--accent);}
+
+@media print{
+  body{background:#fff;}
+  .topbar,.floating-col,#progress{display:none!important;}
+  .page-wrap{padding:0;}
+  .page{box-shadow:none;border:none;border-radius:0;width:100%;padding:0;}
+}
+</style>
+</head>
+<body>
+
+<div id="progress"></div>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <span class="name">Harshvardhan Sutar — Résumé</span>
+    <a class="dl-link" href="https://drive.google.com/file/d/1-_-zF64ndnB0v5SOsxS9sMbhOvZMrKH0/view?usp=sharing" target="_blank" rel="noopener">⬇ Download Resume</a>
+  </div>
+</div>
+
+<div class="page-wrap">
+  <div class="page">
+
+    <div class="doc-header reveal">
+      <div>
+        <h1>Harshvardhan Santosh Sutar</h1>
+        <div class="role">Computer Engineering Student · Java Developer · AI/ML Enthusiast</div>
+        <div class="contact-line">
+          <span>Pune, MH, India</span><span class="dot">·</span>
+          <span class="copy-chip" onclick="copyText(this,'harshvardhansutar@gmail.com')">harshvardhansutar@gmail.com</span><span class="dot">·</span>
+          <span class="copy-chip" onclick="copyText(this,'+91 9022890258')">+91 9022890258</span><span class="dot">·</span>
+          <a href="#" target="_blank">LinkedIn</a><span class="dot">·</span>
+          <a href="#" target="_blank">GitHub</a><span class="dot">·</span>
+          <a href="#" target="_blank">Portfolio</a>
+        </div>
+      </div>
+      <div class="avatar">HS</div>
+    </div>
+
+    <div class="doc-section reveal">
+      <div class="sec-label">Profile</div>
+      <div class="profile-text">
+        Final-year Computer Engineering student (SGPA 9.05) with a strong foundation in Java, Python, and SQL. Experienced across the full development cycle — Android apps, desktop systems, machine learning models, and web platforms — with a proven track record of taking projects from idea to deployment. Comfortable maintaining clear technical documentation and collaborating across teams. Actively seeking Software Development / Junior Developer opportunities, with additional interest in data analytics and QA.
+      </div>
+    </div>
+
+    <div class="doc-section reveal">
+      <div class="sec-label">Education</div>
+      <div class="entry">
+        <div class="entry-head">
+          <div><div class="entry-title">Bachelor of Engineering, Computer Engineering</div>
+          <div class="entry-org">Ajeenkya DY Patil School of Engineering, Lohegaon, Pune · SGPA: 9.05 (Final Year)</div></div>
+          <div class="entry-meta">2024 – Expected 2027</div>
+        </div>
+      </div>
+      <div class="entry">
+        <div class="entry-head">
+          <div><div class="entry-title">Diploma, Computer Engineering</div>
+          <div class="entry-org">JSPM's Jayawantrao Sawant Polytechnic, Hadapsar, Pune · Aggregate: 89.20%</div></div>
+          <div class="entry-meta">2021 – 2024</div>
+        </div>
+      </div>
+      <div class="entry">
+        <div class="entry-head">
+          <div><div class="entry-title">SSC</div>
+          <div class="entry-org">Maharashtra Divisional Board, Hadapsar, Pune · 84.8%</div></div>
+          <div class="entry-meta">2020 – 2021</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="doc-section reveal">
+      <div class="sec-label">Experience</div>
+
+      <div class="entry">
+        <div class="entry-head">
+          <div><div class="entry-title">Data Analytics Trainee</div>
+          <div class="entry-org">MedTourEasy (MDTRESY Medical Travel Pvt. Ltd.), Gurugram</div></div>
+          <div class="entry-meta">Jan 2026 – Feb 2026</div>
+        </div>
+        <div class="expand-toggle" onclick="toggleExpand(this)">Show details ▾</div>
+        <div class="expand-body">
+          <ul>
+            <li>Completed a structured data analytics traineeship under industry mentor guidance, working on real-world datasets.</li>
+            <li>Analyzed a dataset studying death-age differences between right- and left-handed individuals using statistical and EDA techniques.</li>
+            <li>Performed data cleaning, preprocessing, and visualization with Python (Pandas, Matplotlib) to surface patterns and insights.</li>
+            <li>Produced structured reports documenting methodology, findings, and insights.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-head">
+          <div><div class="entry-title">Android Development Intern</div>
+          <div class="entry-org">ProAzure Software Solutions Pvt. Ltd., Pune, MH</div></div>
+          <div class="entry-meta">Jun 2023 – Jul 2023</div>
+        </div>
+        <div class="expand-toggle" onclick="toggleExpand(this)">Show details ▾</div>
+        <div class="expand-body">
+          <ul>
+            <li>Completed MSBTE Industrial Training focused on Android Application Development as part of the Diploma program.</li>
+            <li>Developed 5+ Android applications using Java and Android Studio — activities, layouts, intents, and UI components.</li>
+            <li>Applied Java OOP principles (inheritance, encapsulation, polymorphism) in real application development contexts.</li>
+            <li>Learned the full Android application lifecycle, including debugging, testing, and deployment.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="doc-section reveal">
+      <div class="sec-label">Projects</div>
+
+      <div class="proj-entry open">
+        <div class="proj-head"><div class="proj-name">Rydio — Smart Group Ride Coordination &amp; Rider Assistance App</div><div class="proj-duration">Jun 2025 – Ongoing</div></div>
+        <div class="proj-stack">Android · Java · Firebase</div>
+        <div style="font-size:13.5px;color:#444;">Leading development of a real-time group ride coordination app for bikers to track live locations and share road conditions.</div>
+        <ul class="proj-highlights">
+          <li>Building a community feature for sharing road conditions, scenic spots, and reviews with photos or videos.</li>
+          <li>Migrating from Google Maps to an open-source map solution, handling real-world integration and multi-user state management.</li>
+        </ul>
+        <div class="proj-link"><a href="#" target="_blank">GitHub ↗</a></div>
+        <div class="proj-toggle" onclick="toggleProject(this)">More ▾</div>
+      </div>
+
+      <div class="proj-entry">
+        <div class="proj-head"><div class="proj-name">CuraLung AI — Early Lung Cancer Detection</div><div class="proj-duration">Oct 2025 – Present</div></div>
+        <div class="proj-stack">Python · Scikit-learn</div>
+        <div style="font-size:13.5px;color:#444;">An ML-based predictive system using clinical, demographic, and lifestyle data to support early-stage lung cancer detection.</div>
+        <ul class="proj-highlights">
+          <li>Applied data preprocessing, feature engineering, and classification model training/evaluation.</li>
+          <li>Currently optimizing accuracy with cross-validation.</li>
+        </ul>
+        <div class="proj-link"><a href="#" target="_blank">GitHub ↗</a></div>
+        <div class="proj-toggle" onclick="toggleProject(this)">More ▾</div>
+      </div>
+
+      <div class="proj-entry">
+        <div class="proj-head"><div class="proj-name">Celerio — Team Project &amp; Task Management Desktop App</div><div class="proj-duration">Jun 2026</div></div>
+        <div class="proj-stack">Java · JavaFX · FXML · SQLite · JDBC · BCrypt</div>
+        <div style="font-size:13.5px;color:#444;">A desktop project and task management app inspired by ClickUp, Trello, and Jira, with a professional JavaFX UI.</div>
+        <ul class="proj-highlights">
+          <li>Implemented secure authentication with BCrypt password hashing.</li>
+          <li>Role-based access control for Admin, Project Manager, and Team Member roles.</li>
+          <li>SQLite-backed persistent storage.</li>
+        </ul>
+        <div class="proj-link"><a href="#" target="_blank">GitHub ↗</a></div>
+        <div class="proj-toggle" onclick="toggleProject(this)">More ▾</div>
+      </div>
+
+      <div class="proj-entry">
+        <div class="proj-head"><div class="proj-name">KrishiConnect — Farmer to Consumer Marketplace</div><div class="proj-duration">Feb 2026 – Mar 2026</div></div>
+        <div class="proj-stack">Node.js · HTML · JavaScript</div>
+        <div style="font-size:13.5px;color:#444;">A web-based marketplace connecting farmers directly with buyers, covering listings, authentication, and transactions.</div>
+        <ul class="proj-highlights">
+          <li>Validated multi-role user flows for farmer and buyer accounts.</li>
+          <li>Verified end-to-end transaction integrity.</li>
+        </ul>
+        <div class="proj-link"><a href="#" target="_blank">GitHub ↗</a></div>
+        <div class="proj-toggle" onclick="toggleProject(this)">More ▾</div>
+      </div>
+
+      <div class="proj-entry">
+        <div class="proj-head"><div class="proj-name">Gym Management System</div><div class="proj-duration">Feb 2026</div></div>
+        <div class="proj-stack">JavaFX · MySQL</div>
+        <div style="font-size:13.5px;color:#444;">A desktop system automating member registration, membership tracking, and renewal alerts.</div>
+        <ul class="proj-highlights">
+          <li>Deployed to a live local gym, managing 30+ active member registrations since March 2026.</li>
+        </ul>
+        <div class="proj-link"><a href="#" target="_blank">GitHub ↗</a></div>
+        <div class="proj-toggle" onclick="toggleProject(this)">More ▾</div>
+      </div>
+
+      <div class="proj-entry">
+        <div class="proj-head"><div class="proj-name">English Coach AI — AI-Powered English Learning Platform</div><div class="proj-duration">Jul 2026 – Present</div></div>
+        <div class="proj-stack">Python · Flask · HTML/CSS/JS · SQLite · OpenRouter API</div>
+        <div style="font-size:13.5px;color:#444;">A full-stack AI web app that assesses English proficiency and adapts conversations to the learner's skill level.</div>
+        <ul class="proj-highlights">
+          <li>Personalized grammar correction, vocabulary tracking, mistake history, and session summaries.</li>
+        </ul>
+        <div class="proj-link"><a href="#" target="_blank">GitHub ↗</a></div>
+        <div class="proj-toggle" onclick="toggleProject(this)">More ▾</div>
+      </div>
+
+      <div class="proj-entry">
+        <div class="proj-head"><div class="proj-name">Driver Drowsiness Detection and Alert System (DDDAS)</div><div class="proj-duration">Jan 2024 – Apr 2024</div></div>
+        <div class="proj-stack">Python · OpenCV · Sensor Integration</div>
+        <div style="font-size:13.5px;color:#444;">A real-time computer vision system monitoring eye-blink patterns and head-pose to detect drowsiness.</div>
+        <ul class="proj-highlights">
+          <li>Implemented and validated detection logic across multiple alert thresholds.</li>
+          <li>Systematically tested edge cases under varied lighting conditions.</li>
+        </ul>
+        <div class="proj-link"><a href="#" target="_blank">GitHub ↗</a></div>
+        <div class="proj-toggle" onclick="toggleProject(this)">More ▾</div>
+      </div>
+
+      <div class="proj-entry">
+        <div class="proj-head"><div class="proj-name">Stack Implementation</div><div class="proj-duration">Jan 2026</div></div>
+        <div class="proj-stack">JavaFX</div>
+        <div style="font-size:13.5px;color:#444;">A desktop-based Stack data structure simulating push, pop, peek, and display operations on LIFO principles.</div>
+      </div>
+
+    </div>
+
+    <div class="doc-section reveal">
+      <div class="sec-label">Certifications</div>
+      <div class="cert-row"><div><span class="cert-name">Google Data Analytics Professional Certificate</span><br><span class="cert-org">Google (via Coursera)</span></div><div class="cert-year">Jan 2026</div></div>
+      <div class="cert-row"><div><span class="cert-name">Green Skills and Artificial Intelligence</span><br><span class="cert-org">Edunet Foundation, AICTE &amp; Shell India</span></div><div class="cert-year">Jul 2025</div></div>
+      <div class="cert-row"><div><span class="cert-name">Python Programming</span><br><span class="cert-org">Reliance Foundation Skilling Academy</span></div><div class="cert-year">Jun 2025</div></div>
+      <div class="cert-row"><div><span class="cert-name">Android Application Development</span><br><span class="cert-org">MSBTE Industrial Training, ProAzure Software Solutions</span></div><div class="cert-year">Jul 2023</div></div>
+    </div>
+
+    <div class="doc-section reveal">
+      <div class="sec-label">Technical Skills</div>
+      <div class="skill-cat"><div class="skill-cat-title">Programming Languages</div>
+        <div class="chips"><div class="chip">Java (Primary)</div><div class="chip">Python</div><div class="chip">SQL</div><div class="chip">C</div><div class="chip">C++</div><div class="chip">JavaScript</div></div>
+      </div>
+      <div class="skill-cat"><div class="skill-cat-title">Mobile Development</div>
+        <div class="chips"><div class="chip">Android (Java)</div><div class="chip">Android Studio</div><div class="chip">Activities &amp; Intents</div><div class="chip">Fragments</div></div>
+      </div>
+      <div class="skill-cat"><div class="skill-cat-title">Desktop Development</div>
+        <div class="chips"><div class="chip">JavaFX</div><div class="chip">JDBC</div><div class="chip">SQLite</div><div class="chip">MySQL</div></div>
+      </div>
+      <div class="skill-cat"><div class="skill-cat-title">Web &amp; Backend</div>
+        <div class="chips"><div class="chip">HTML</div><div class="chip">CSS</div><div class="chip">XML</div><div class="chip">Firebase</div><div class="chip">MongoDB</div></div>
+      </div>
+      <div class="skill-cat"><div class="skill-cat-title">Data &amp; Analytics</div>
+        <div class="chips"><div class="chip">EDA</div><div class="chip">Pandas</div><div class="chip">Matplotlib</div><div class="chip">Seaborn</div><div class="chip">Power BI</div><div class="chip">Tableau</div></div>
+      </div>
+      <div class="skill-cat"><div class="skill-cat-title">AI / Machine Learning</div>
+        <div class="chips"><div class="chip">Scikit-learn</div><div class="chip">TensorFlow</div><div class="chip">Feature Engineering</div><div class="chip">Model Evaluation</div></div>
+      </div>
+      <div class="skill-cat"><div class="skill-cat-title">Computer Vision</div>
+        <div class="chips"><div class="chip">OpenCV</div><div class="chip">Image Processing</div><div class="chip">Real-time Detection</div></div>
+      </div>
+      <div class="skill-cat"><div class="skill-cat-title">Tools</div>
+        <div class="chips"><div class="chip">Git</div><div class="chip">GitHub</div><div class="chip">VS Code</div><div class="chip">Jupyter Notebook</div></div>
+      </div>
+      <div class="skill-cat"><div class="skill-cat-title">Core CS Concepts</div>
+        <div class="chips"><div class="chip">DSA</div><div class="chip">OOP</div><div class="chip">DBMS</div><div class="chip">SDLC</div></div>
+      </div>
+    </div>
+
+    <div class="doc-section two-col reveal">
+      <div>
+        <div class="sec-label">Languages</div>
+        <div style="font-size:13.5px;color:#444;">English — Professional<br>Hindi — Native<br>Marathi — Native</div>
+      </div>
+      <div>
+        <div class="sec-label">Interests</div>
+        <div class="chips">
+          <div class="chip">Cricket</div><div class="chip">Cinematography &amp; Vlogging</div><div class="chip">Story Writing &amp; Editing</div><div class="chip">Gym &amp; Fitness</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="doc-section reveal">
+      <div class="sec-label">Contact</div>
+      <div class="cert-row"><div><span class="cert-name">Email</span></div><div class="cert-year copy-chip" onclick="copyText(this,'harshvardhansutar@gmail.com')">harshvardhansutar@gmail.com</div></div>
+      <div class="cert-row"><div><span class="cert-name">Phone</span></div><div class="cert-year copy-chip" onclick="copyText(this,'+91 9022890258')">+91 9022890258</div></div>
+      <div class="cert-row"><div><span class="cert-name">Location</span></div><div class="cert-year">Pune, MH, India</div></div>
+      <div class="cert-row"><div><span class="cert-name">Links</span></div><div class="cert-year"><a href="#" target="_blank">LinkedIn</a> · <a href="#" target="_blank">GitHub</a> · <a href="#" target="_blank">Portfolio</a></div></div>
+    </div>
+
+  </div>
+</div>
+
+<footer>Last updated: July 2026 · © Harshvardhan Sutar</footer>
+
+<div class="floating-col">
+  <a class="fab accent" id="dlFab" href="PASTE_YOUR_GOOGLE_DRIVE_LINK_HERE" target="_blank" rel="noopener" title="Download Resume">⤓</a>
+  <button class="fab" id="topFab" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Scroll to top">↑</button>
+</div>
+
+<script>
+window.addEventListener('scroll',()=>{
+  const h=document.documentElement;
+  const pct=(h.scrollTop)/(h.scrollHeight-h.clientHeight)*100;
+  document.getElementById('progress').style.width=pct+'%';
+  document.getElementById('topFab').classList.toggle('show',h.scrollTop>400);
+  document.getElementById('dlFab').classList.add('show');
+});
+
+function copyText(el,text){
+  navigator.clipboard.writeText(text).then(()=>{
+    const orig=el.textContent;
+    el.textContent='Copied!';
+    el.classList.add('copied');
+    setTimeout(()=>{ el.textContent=orig; el.classList.remove('copied'); },1400);
+  });
+}
+function toggleExpand(el){
+  const body=el.nextElementSibling;
+  body.classList.toggle('open');
+  el.textContent = body.classList.contains('open') ? 'Hide details ▴' : 'Show details ▾';
+}
+function toggleProject(el){
+  const entry=el.closest('.proj-entry');
+  entry.classList.toggle('open');
+  el.textContent = entry.classList.contains('open') ? 'Less ▴' : 'More ▾';
+}
+
+/* Subtle fade-in as sections enter view */
+const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+if(!prefersReduced && 'IntersectionObserver' in window){
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        entry.target.classList.add('in');
+        io.unobserve(entry.target);
+      }
+    });
+  },{threshold:0.12,rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+}else{
+  document.querySelectorAll('.reveal').forEach(el=>el.classList.add('in'));
+}
+</script>
+
+</body>
+</html>
