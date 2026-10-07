@@ -3,177 +3,336 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Harshvardhan Sutar — Resume</title>
+<title>Harshvardhan Sutar — Resume | Candidate Dossier</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#F8F6F2;
+  --desk:#14171d;
   --paper:#FFFFFF;
-  --text:#111111;
-  --text2:#666666;
-  --border:#E5E5E5;
-  --accent:#5B6472;
-  --success:#22C55E;
-  --shadow:0 25px 80px rgba(0,0,0,.08);
+  --text:#16181d;
+  --text2:#4b5363;
+  --text3:#7c8594;
+  --border:#e2ded4;
+  --border-subtle:#eae7de;
+  --accent:#2b394e;
+  --success:#16a34a;
 }
 *{margin:0;padding:0;box-sizing:border-box;}
 body{
-  font-family:'Inter',sans-serif;
-  background:var(--bg);
+  font-family:'Inter',-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+  background:#14171d radial-gradient(ellipse 1200px 950px at 50% 180px, #242a35 0%, #161922 55%, #0c0e12 100%) no-repeat fixed;
   color:var(--text);
-  line-height:1.6;
+  line-height:1.55;
   -webkit-font-smoothing:antialiased;
+  min-height:100vh;
 }
 a{color:inherit;text-decoration:none;}
 
-#progress{position:fixed;top:0;left:0;height:3px;background:var(--accent);width:0%;z-index:1000;transition:width .1s;}
+#progress{position:fixed;top:0;left:0;height:3px;background:#3b82f6;width:0%;z-index:1000;transition:width .1s;}
 
-/* Slim identity label, not a website nav */
+/* Topbar: Sleek Interviewer Desk Controls */
 .topbar{
   position:sticky;top:0;z-index:900;
   display:flex;justify-content:center;
-  padding:16px 0;
+  padding:14px 0;
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+  background:rgba(18,21,27,0.82);
+  border-bottom:1px solid rgba(255,255,255,0.06);
 }
 .topbar-inner{
-  width:min(850px,92%);
+  width:min(860px,94%);
   display:flex;align-items:center;justify-content:space-between;
+  gap:12px;
 }
 .topbar .name{
-  font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;
-  color:var(--text2);opacity:.7;
-  background:rgba(248,246,242,.85);backdrop-filter:blur(6px);
-  padding:4px 10px;border-radius:100px;
-}
-.topbar .dl-link{
-  font-size:12.5px;font-weight:600;color:var(--text);
-  background:rgba(248,246,242,.85);backdrop-filter:blur(6px);
-  border:1px solid var(--border);padding:6px 14px;border-radius:100px;
+  font-size:11.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;
+  color:#b4bdcb;
+  background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.09);
+  padding:5px 12px;border-radius:100px;
   display:inline-flex;align-items:center;gap:6px;
-  transition:transform .2s,box-shadow .2s;
 }
-.topbar .dl-link:hover{transform:translateY(-1px);box-shadow:0 6px 16px rgba(0,0,0,.06);}
+.topbar .name .status-dot{
+  width:6px;height:6px;border-radius:50%;background:#22c55e;box-shadow:0 0 8px #22c55e;
+}
+.topbar .actions{
+  display:flex;align-items:center;gap:8px;
+}
+.topbar .btn{
+  font-size:12px;font-weight:600;color:#f0f3f8;
+  background:rgba(255,255,255,0.08);
+  border:1px solid rgba(255,255,255,0.14);
+  padding:6px 14px;border-radius:100px;
+  display:inline-flex;align-items:center;gap:6px;cursor:pointer;
+  transition:all .2s;
+  text-decoration:none;
+}
+.topbar .btn:hover{
+  background:rgba(255,255,255,0.16);
+  border-color:rgba(255,255,255,0.28);
+  transform:translateY(-1px);
+}
+.topbar .btn.primary{
+  background:#2563eb;border-color:#3b82f6;color:#ffffff;box-shadow:0 2px 10px rgba(37,99,235,0.3);
+}
+.topbar .btn.primary:hover{
+  background:#1d4ed8;box-shadow:0 4px 14px rgba(37,99,235,0.45);
+}
 
-/* THE PAPER — A4 proportioned on desktop (1:1.4142) */
-.page-wrap{display:flex;justify-content:center;padding:20px 20px 90px;}
-.page{
-  width:min(850px,100%);
-  background:var(--paper);
-  border-radius:24px;
-  box-shadow:var(--shadow);
-  border:1px solid var(--border);
-  padding:70px;
+/* THE HARDCOPY PAPER — Realistic physical A4 sheet on an executive desk */
+.page-wrap{
+  display:flex;justify-content:center;
+  padding:34px 20px 100px;
+  position:relative;
 }
-/* A4 proportion (1:1.4142) as a minimum height on desktop, content grows beyond it */
+.page{
+  position:relative;
+  width:min(850px,100%);
+  background:#ffffff;
+  border-radius:2px; /* Authentic clean-cut hardcopy sheet */
+  border:1px solid rgba(206,201,189,0.75);
+  padding:50px 62px 56px;
+  box-shadow:
+    0 1px 3px rgba(0,0,0,0.12),
+    0 10px 28px -4px rgba(0,0,0,0.38),
+    0 28px 70px -10px rgba(0,0,0,0.55),
+    /* Underlying dossier pages (physical paper stack) */
+    -3px 4px 0 -1px #faf9f5,
+    -4px 5px 6px rgba(0,0,0,0.2),
+    -7px 8px 0 -2px #f0ece3,
+    -8px 9px 12px rgba(0,0,0,0.24);
+}
 @media(min-width:701px){
   .page{min-height:1202px;}
 }
 @media(max-width:700px){
-  .page{padding:44px 26px;border-radius:20px;}
+  .page-wrap{padding:16px 12px 60px;}
+  .page{padding:38px 22px 36px;border-radius:2px;box-shadow:0 12px 36px rgba(0,0,0,0.4);}
+  .paperclip{left:22px!important;top:-18px!important;transform:scale(0.85);transform-origin:top left;}
+  .docket-strip{flex-direction:column;gap:4px;align-items:flex-start!important;}
+  .doc-header{flex-direction:column-reverse;gap:18px;}
+  .candidate-photo-wrap{align-self:flex-start;}
+  .official-stamp{display:none;}
+  .docket-footer{flex-direction:column;gap:6px;align-items:flex-start!important;}
 }
 
-/* Header inside page */
-.doc-header{display:flex;justify-content:space-between;align-items:flex-start;gap:24px;padding-bottom:32px;border-bottom:1px solid var(--border);margin-bottom:32px;}
-.doc-header h1{font-size:30px;font-weight:800;letter-spacing:-.01em;margin-bottom:4px;}
-.doc-header .role{font-size:14.5px;color:var(--text2);font-weight:500;}
+/* Realistic stainless steel paperclip */
+.paperclip{
+  position:absolute;
+  top:-22px;
+  left:54px;
+  z-index:30;
+  pointer-events:none;
+  filter:drop-shadow(0 3px 6px rgba(0,0,0,0.42));
+}
+
+/* Hardcopy Docket Header */
+.docket-strip{
+  display:flex;justify-content:space-between;align-items:center;
+  font-family:'JetBrains Mono',ui-monospace,Menlo,Monaco,Consolas,monospace;
+  font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;
+  color:#8a8374;padding-bottom:14px;margin-bottom:26px;
+  border-bottom:1px dashed #d8d3c4;
+}
+.docket-strip .docket-id span{color:#1a1a1a;font-weight:700;}
+.docket-strip .docket-title{font-weight:600;color:#554f42;}
+.docket-strip .docket-status{color:#1e3a5f;font-weight:700;}
+
+/* Header inside paper */
+.doc-header{
+  display:flex;justify-content:space-between;align-items:flex-start;gap:24px;
+  padding-bottom:28px;border-bottom:1px solid var(--border);margin-bottom:28px;
+}
+.doc-header h1{font-size:28px;font-weight:800;letter-spacing:-.02em;margin-bottom:4px;color:#111418;}
+.doc-header .role{font-size:14px;color:var(--text2);font-weight:600;letter-spacing:-.01em;}
 .doc-header .contact-line{font-size:12.5px;color:var(--text2);margin-top:10px;line-height:1.9;}
 .doc-header .contact-line span{white-space:nowrap;margin-right:2px;}
-.doc-header .contact-line a:hover{color:var(--accent);}
-.doc-header .dot{margin:0 6px;color:var(--border);}
-.avatar{
-  width:64px;height:64px;border-radius:16px;flex-shrink:0;
-  background:linear-gradient(135deg,#111,#444);
-  display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:19px;
+.doc-header .contact-line a{color:#1d4ed8;font-weight:500;}
+.doc-header .contact-line a:hover{text-decoration:underline;}
+.doc-header .dot{margin:0 6px;color:#c8c4b7;}
+
+/* Candidate Photo: Printed Passport Portrait Frame */
+.candidate-photo-wrap{
+  position:relative;flex-shrink:0;text-align:center;
 }
-.copy-chip{cursor:pointer;}
-.copy-chip.copied{color:var(--success);}
+.candidate-photo{
+  width:96px;height:122px;
+  object-fit:cover;
+  object-position:center 12%;
+  display:block;
+  border-radius:2px;
+  background:#ffffff;
+  padding:3px;
+  border:1px solid rgba(0,0,0,0.22);
+  box-shadow:
+    0 3px 8px rgba(0,0,0,0.14),
+    0 1px 2px rgba(0,0,0,0.08);
+  transition:transform .2s ease, box-shadow .2s ease;
+}
+.candidate-photo:hover{
+  transform:scale(1.03);
+  box-shadow:0 6px 18px rgba(0,0,0,0.22);
+}
+.photo-caption{
+  margin-top:5px;
+  font-family:'JetBrains Mono',monospace;
+  font-size:8px;
+  font-weight:600;
+  letter-spacing:.12em;
+  color:#948d7e;
+  text-transform:uppercase;
+}
+
+.copy-chip{cursor:pointer;transition:color .15s;}
+.copy-chip:hover{color:#1d4ed8;}
+.copy-chip.copied{color:var(--success);font-weight:600;}
 
 /* Doc sections */
-.doc-section{margin-bottom:36px;}
+.doc-section{margin-bottom:30px;}
 .doc-section:last-child{margin-bottom:0;}
-.sec-label{font-size:11px;font-weight:700;letter-spacing:.14em;color:var(--text2);text-transform:uppercase;margin-bottom:16px;}
+.sec-label{
+  font-size:11px;font-weight:800;letter-spacing:.14em;
+  color:#5a6270;text-transform:uppercase;margin-bottom:14px;
+  display:flex;align-items:center;gap:8px;
+}
+.sec-label::after{
+  content:'';flex:1;height:1px;background:#e8e4d8;
+}
 
 /* Subtle scroll reveal */
-.reveal{opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease;}
+.reveal{opacity:0;transform:translateY(12px);transition:opacity .5s ease,transform .5s ease;}
 .reveal.in{opacity:1;transform:translateY(0);}
 @media(prefers-reduced-motion:reduce){
   .reveal{opacity:1;transform:none;transition:none;}
 }
 
-/* Profile paragraph w/ accent line */
-.profile-text{border-left:3px solid var(--accent);padding-left:20px;color:#333;font-size:14.5px;}
+/* Profile paragraph */
+.profile-text{
+  border-left:3px solid var(--accent);
+  padding-left:18px;
+  color:#242830;
+  font-size:14px;
+  line-height:1.65;
+}
 
 /* Education / Experience entries */
-.entry{margin-bottom:22px;}
+.entry{margin-bottom:20px;}
 .entry:last-child{margin-bottom:0;}
 .entry-head{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;}
-.entry-title{font-weight:700;font-size:15px;}
-.entry-org{font-size:13.5px;color:var(--text2);margin-top:1px;}
-.entry-meta{font-size:12.5px;color:var(--text2);white-space:nowrap;text-align:right;}
+.entry-title{font-weight:700;font-size:14.5px;color:#14171d;}
+.entry-org{font-size:13px;color:var(--text2);margin-top:2px;}
+.entry-meta{font-size:12px;color:#6b7280;font-weight:600;white-space:nowrap;text-align:right;}
 
 .expand-toggle{
-  margin-top:8px;font-size:12.5px;font-weight:600;color:var(--accent);cursor:pointer;
+  margin-top:7px;font-size:12px;font-weight:600;color:#2563eb;cursor:pointer;
   display:inline-flex;align-items:center;gap:4px;
 }
 .expand-body{max-height:0;overflow:hidden;transition:max-height .35s ease;}
-.expand-body.open{max-height:400px;}
-.expand-body ul{margin:10px 0 0 18px;color:#444;font-size:13.5px;}
+.expand-body.open{max-height:450px;}
+.expand-body ul{margin:9px 0 0 18px;color:#333945;font-size:13.5px;line-height:1.6;}
 .expand-body ul li{margin-bottom:5px;}
 
 /* Projects */
-.proj-entry{border-top:1px solid var(--border);padding:18px 0;}
+.proj-entry{border-top:1px solid var(--border-subtle);padding:16px 0;}
+.proj-entry:first-of-type{border-top:none;padding-top:4px;}
 .proj-entry:last-child{padding-bottom:0;}
 .proj-head{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:baseline;}
-.proj-name{font-weight:700;font-size:15px;}
-.proj-duration{font-size:12px;color:var(--text2);white-space:nowrap;}
-.proj-stack{font-size:12px;color:var(--accent);font-weight:600;margin:2px 0 8px;}
-.proj-highlights{margin:0 0 0 18px;color:#444;font-size:13.5px;display:none;}
-.proj-entry.open .proj-highlights{display:block;margin-top:8px;}
+.proj-name{font-weight:700;font-size:14.5px;color:#14171d;}
+.proj-duration{font-size:12px;color:#4b5563;font-weight:600;white-space:nowrap;}
+.proj-stack{font-size:12px;color:#475569;font-weight:600;margin:3px 0 8px;}
+.proj-highlights{margin:0 0 0 18px;color:#333945;font-size:13px;line-height:1.6;display:none;}
+.proj-entry.open .proj-highlights{display:block;margin-top:6px;}
 .proj-highlights li{margin-bottom:5px;}
-.proj-link{display:none;font-size:12.5px;margin-top:8px;}
-.proj-link a{font-weight:600;color:var(--accent);}
+.proj-link{display:none;font-size:12px;margin-top:8px;}
+.proj-link a{font-weight:600;color:#2563eb;}
 .proj-link a:hover{text-decoration:underline;}
 .proj-entry.open .proj-link{display:block;}
-.proj-toggle{font-size:12.5px;font-weight:600;color:var(--accent);cursor:pointer;display:inline-block;margin-top:10px;}
+.proj-toggle{font-size:12px;font-weight:600;color:#2563eb;cursor:pointer;display:inline-block;margin-top:8px;}
 
 /* Skills */
-.skill-cat{margin-bottom:16px;}
+.skill-cat{margin-bottom:14px;}
 .skill-cat:last-child{margin-bottom:0;}
-.skill-cat-title{font-size:12px;font-weight:700;color:var(--text2);margin-bottom:8px;text-transform:uppercase;letter-spacing:.06em;}
-.chips{display:flex;flex-wrap:wrap;gap:8px;}
+.skill-cat-title{font-size:11.5px;font-weight:700;color:#5a6270;margin-bottom:7px;text-transform:uppercase;letter-spacing:.05em;}
+.chips{display:flex;flex-wrap:wrap;gap:7px;}
 .chip{
-  padding:6px 13px;border-radius:100px;background:var(--bg);border:1px solid var(--border);
-  font-size:12.5px;font-weight:500;transition:transform .15s,border-color .15s;
+  padding:5px 12px;border-radius:3px;background:#f6f5f1;border:1px solid #ded9cb;
+  font-size:12px;font-weight:500;color:#242832;transition:all .15s;
 }
-.chip:hover{transform:translateY(-2px);border-color:var(--accent);}
+.chip:hover{background:#ffffff;border-color:#2563eb;color:#1d4ed8;transform:translateY(-1px);}
 
 /* Certs */
-.cert-row{display:flex;justify-content:space-between;gap:12px;padding:11px 0;border-top:1px solid var(--border);font-size:13.5px;flex-wrap:wrap;}
-.cert-row:first-of-type{border-top:none;}
-.cert-name{font-weight:600;}
-.cert-org{color:var(--text2);font-size:12.5px;}
-.cert-year{color:var(--text2);font-size:12.5px;white-space:nowrap;}
+.cert-row{display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-top:1px solid var(--border-subtle);font-size:13px;flex-wrap:wrap;}
+.cert-row:first-of-type{border-top:none;padding-top:2px;}
+.cert-name{font-weight:600;color:#14171d;}
+.cert-org{color:var(--text2);font-size:12px;}
+.cert-year{color:#6b7280;font-size:12px;font-weight:600;white-space:nowrap;}
 
 /* Languages / interests row */
 .two-col{display:grid;grid-template-columns:1fr 1fr;gap:32px;}
-@media(max-width:600px){.two-col{grid-template-columns:1fr;gap:28px;}}
+@media(max-width:600px){.two-col{grid-template-columns:1fr;gap:24px;}}
 
-footer{text-align:center;font-size:12.5px;color:var(--text2);padding:0 0 40px;}
+/* Official Hardcopy Watermark Stamp */
+.official-stamp{
+  position:absolute;
+  bottom:54px;
+  right:48px;
+  pointer-events:none;
+  user-select:none;
+  opacity:0.17;
+  transform:rotate(-13deg);
+  z-index:5;
+}
+.stamp-inner{
+  width:112px;height:112px;border-radius:50%;
+  border:2.5px dashed #1e3a5f;
+  padding:3px;display:flex;align-items:center;justify-content:center;
+}
+.stamp-border{
+  width:100%;height:100%;border-radius:50%;
+  border:1.5px solid #1e3a5f;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;color:#1e3a5f;
+  font-family:'JetBrains Mono',ui-monospace,monospace;
+}
+.stamp-check{font-size:20px;font-weight:800;line-height:1;margin-bottom:2px;}
+.stamp-title{font-size:8px;font-weight:800;letter-spacing:.12em;}
+.stamp-sub{font-size:7px;font-weight:700;letter-spacing:.08em;margin-top:2px;}
+
+/* Docket Footer */
+.docket-footer{
+  display:flex;justify-content:space-between;align-items:center;
+  font-family:'JetBrains Mono',ui-monospace,Menlo,Monaco,Consolas,monospace;
+  font-size:9px;letter-spacing:.1em;text-transform:uppercase;
+  color:#948d7f;padding-top:16px;margin-top:32px;
+  border-top:1px dashed #d8d3c4;
+}
+
+footer{text-align:center;font-size:12px;color:#808b9b;padding:0 0 45px;}
 
 .floating-col{position:fixed;bottom:26px;right:26px;display:flex;flex-direction:column;gap:12px;z-index:800;}
 .fab{
-  width:46px;height:46px;border-radius:50%;background:var(--text);color:#fff;border:none;
-  display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:var(--shadow);
-  font-size:17px;opacity:0;transform:scale(.8);transition:opacity .3s,transform .3s;
+  width:46px;height:46px;border-radius:50%;background:#1e232c;color:#f0f3f8;border:1px solid rgba(255,255,255,0.15);
+  display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 8px 24px rgba(0,0,0,0.35);
+  font-size:16px;opacity:0;transform:scale(.8);transition:opacity .3s,transform .3s,background .2s;
 }
 .fab.show{opacity:1;transform:scale(1);}
-.fab.accent{background:var(--accent);}
+.fab:hover{background:#2b3340;transform:scale(1.06);}
+.fab.accent{background:#2563eb;color:#ffffff;border-color:#3b82f6;}
+.fab.accent:hover{background:#1d4ed8;}
 
+/* Clean Physical Printer Output */
 @media print{
-  body{background:#fff;}
-  .topbar,.floating-col,#progress{display:none!important;}
-  .page-wrap{padding:0;}
-  .page{box-shadow:none;border:none;border-radius:0;width:100%;padding:0;}
+  body{background:#fff!important;min-height:auto!important;}
+  .topbar,.floating-col,#progress,.paperclip,.official-stamp{display:none!important;}
+  .page-wrap{padding:0!important;}
+  .page{
+    box-shadow:none!important;
+    border:none!important;
+    border-radius:0!important;
+    width:100%!important;
+    padding:16mm 14mm!important;
+  }
 }
 </style>
 </head>
@@ -181,15 +340,65 @@ footer{text-align:center;font-size:12.5px;color:var(--text2);padding:0 0 40px;}
 
 <div id="progress"></div>
 
+<!-- Sleek Interviewer Desk Controls -->
 <div class="topbar">
   <div class="topbar-inner">
-    <span class="name">Harshvardhan Sutar — Résumé</span>
-    <a class="dl-link" href="https://drive.google.com/file/d/1gx9XNXIRcN1wo1t5n_sdGOFW7cso6vhR/view?usp=sharing" target="_blank" rel="noopener">⬇ Download Resume</a>
+    <div class="name"><span class="status-dot"></span> Harshvardhan Sutar — Candidate Dossier</div>
+    <div class="actions">
+      <button class="btn" onclick="window.print()" title="Print physical hardcopy">🖨️ Print Hardcopy</button>
+      <a class="btn primary" href="https://drive.google.com/file/d/1gx9XNXIRcN1wo1t5n_sdGOFW7cso6vhR/view?usp=sharing" target="_blank" rel="noopener">⬇ Download PDF</a>
+    </div>
   </div>
 </div>
 
 <div class="page-wrap">
   <div class="page">
+
+    <!-- Realistic stainless steel paperclip -->
+    <div class="paperclip" aria-hidden="true">
+      <svg width="40" height="92" viewBox="0 0 40 92" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Cast shadow on paper -->
+        <path d="M14 24 V74 C14 81 19 86 26 86 C33 86 38 81 38 74 V18 C38 8.5 30 1 20 1 C10 1 2 8.5 2 18 V72" stroke="rgba(0,0,0,0.24)" stroke-width="4.5" stroke-linecap="round"/>
+        <!-- Stainless steel outer loop -->
+        <path d="M12 22 V72 C12 78 16.5 83 23 83 C29.5 83 34 78 34 72 V16 C34 7.5 26.5 1 18 1 C9.5 1 2 7.5 2 16 V70" stroke="url(#silverGradient)" stroke-width="3.8" stroke-linecap="round"/>
+        <!-- Metallic specular highlight -->
+        <path d="M12 22 V72 C12 78 16.5 83 23 83 C29.5 83 34 78 34 72 V16 C34 7.5 26.5 1 18 1 C9.5 1 2 7.5 2 16 V70" stroke="url(#shineGradient)" stroke-width="1.3" stroke-linecap="round"/>
+        <defs>
+          <linearGradient id="silverGradient" x1="0" y1="0" x2="40" y2="92" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#cfd4dc"/>
+            <stop offset="25%" stop-color="#7a838f"/>
+            <stop offset="50%" stop-color="#f4f6f8"/>
+            <stop offset="75%" stop-color="#69727f"/>
+            <stop offset="100%" stop-color="#b8bfcb"/>
+          </linearGradient>
+          <linearGradient id="shineGradient" x1="0" y1="0" x2="40" y2="92" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#ffffff" stop-opacity="0.85"/>
+            <stop offset="45%" stop-color="#ffffff" stop-opacity="0.15"/>
+            <stop offset="70%" stop-color="#ffffff" stop-opacity="0.9"/>
+            <stop offset="100%" stop-color="#ffffff" stop-opacity="0.1"/>
+          </linearGradient>
+        </defs>
+      </svg>
+    </div>
+
+    <!-- Dossier docket strip -->
+    <div class="docket-strip">
+      <div class="docket-id">REF // <span>HS-2026-ENG</span></div>
+      <div class="docket-title">CANDIDATE DOSSIER · CONFIDENTIAL INTERVIEW EVALUATION COPY</div>
+      <div class="docket-status">FINAL YEAR · SGPA: 9.38</div>
+    </div>
+
+    <!-- Official Evaluation Stamp Watermark -->
+    <div class="official-stamp" aria-hidden="true">
+      <div class="stamp-inner">
+        <div class="stamp-border">
+          <div class="stamp-check">✓</div>
+          <div class="stamp-title">EVALUATION COPY</div>
+          <div class="stamp-sub">VERIFIED · PUNE</div>
+          <div class="stamp-sub">2026</div>
+        </div>
+      </div>
+    </div>
 
     <div class="doc-header reveal">
       <div>
@@ -204,7 +413,10 @@ footer{text-align:center;font-size:12.5px;color:var(--text2);padding:0 0 40px;}
           <a href="#" target="_blank" rel="noopener">Portfolio</a>
         </div>
       </div>
-      <div class="avatar">HS</div>
+      <div class="candidate-photo-wrap">
+        <img src="profile.jpg" alt="Harshvardhan Santosh Sutar" class="candidate-photo" />
+        <div class="photo-caption">PHOTO ID</div>
+      </div>
     </div>
 
     <div class="doc-section reveal">
@@ -393,13 +605,20 @@ footer{text-align:center;font-size:12.5px;color:var(--text2);padding:0 0 40px;}
       <div class="cert-row"><div><span class="cert-name">Links</span></div><div class="cert-year"><a href="#" target="_blank" rel="noopener">LinkedIn</a> · <a href="https://github.com/harshvardhansutar" target="_blank" rel="noopener">GitHub</a> · <a href="#" target="_blank" rel="noopener">Portfolio</a></div></div>
     </div>
 
+    <!-- Hardcopy Docket Footer -->
+    <div class="docket-footer">
+      <div>PAGE 1 OF 1 · PHYSICAL DOSSIER EVALUATION COPY</div>
+      <div>CANDIDATE ID: HS-938-2026 · PUNE, MH, INDIA</div>
+    </div>
+
   </div>
 </div>
 
-<footer>Last updated: October 2026 · © Harshvardhan Sutar</footer>
+<footer>Dossier: Harshvardhan Sutar · Last updated: October 2026 · Confidential Candidate Hardcopy</footer>
 
 <div class="floating-col">
-  <a class="fab accent" id="dlFab" href="https://drive.google.com/file/d/1gx9XNXIRcN1wo1t5n_sdGOFW7cso6vhR/view?usp=sharing" target="_blank" rel="noopener" title="Download Resume">⤓</a>
+  <button class="fab" id="printFab" onclick="window.print()" title="Print Hardcopy">🖨️</button>
+  <a class="fab accent" id="dlFab" href="https://drive.google.com/file/d/1gx9XNXIRcN1wo1t5n_sdGOFW7cso6vhR/view?usp=sharing" target="_blank" rel="noopener" title="Download Resume PDF">⤓</a>
   <button class="fab" id="topFab" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Scroll to top">↑</button>
 </div>
 
@@ -410,6 +629,7 @@ window.addEventListener('scroll',()=>{
   document.getElementById('progress').style.width=pct+'%';
   document.getElementById('topFab').classList.toggle('show',h.scrollTop>400);
   document.getElementById('dlFab').classList.add('show');
+  document.getElementById('printFab').classList.add('show');
 });
 
 function copyText(el,text){
